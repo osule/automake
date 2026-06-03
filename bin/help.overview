@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+cat <<'EOF'
+GNU Automake — generates portable Makefile.in files for use with autoconf.
+
+This plugin lists versions from https://github.com/autotools-mirror/automake
+and builds them from the official GNU release tarballs (ftp.gnu.org), which
+ship a pre-generated ./configure.
+
+Build requirements: autoconf, perl, make. If you manage autoconf with asdf,
+install and activate it before building automake.
+EOF

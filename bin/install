@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+plugin_dir=$(dirname "$(dirname "${BASH_SOURCE[0]}")")
+# shellcheck source=../lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
+
+[ -n "${ASDF_INSTALL_TYPE:-}" ] || fail "ASDF_INSTALL_TYPE is required"
+[ -n "${ASDF_INSTALL_VERSION:-}" ] || fail "ASDF_INSTALL_VERSION is required"
+[ -n "${ASDF_INSTALL_PATH:-}" ] || fail "ASDF_INSTALL_PATH is required"
+
+if [ "$ASDF_INSTALL_TYPE" != "version" ]; then
+	fail "Only release installs are supported, not '$ASDF_INSTALL_TYPE'."
+fi
+
+build_and_install "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"

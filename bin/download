@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+plugin_dir=$(dirname "$(dirname "${BASH_SOURCE[0]}")")
+# shellcheck source=../lib/utils.bash
+source "${plugin_dir}/lib/utils.bash"
+
+[ -n "${ASDF_INSTALL_VERSION:-}" ] || fail "ASDF_INSTALL_VERSION is required"
+[ -n "${ASDF_DOWNLOAD_PATH:-}" ] || fail "ASDF_DOWNLOAD_PATH is required"
+
+download_and_extract "$ASDF_INSTALL_VERSION" "$ASDF_DOWNLOAD_PATH"
