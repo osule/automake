@@ -23,10 +23,9 @@ fail() {
 	exit 1
 }
 
+# Versions are listed via `git ls-remote` and tarballs come from the GNU mirror,
+# so no GitHub API requests are made and no token is needed.
 curl_opts=(-fsSL)
-if [ -n "${GITHUB_API_TOKEN:-}" ]; then
-	curl_opts=("${curl_opts[@]}" -H "Authorization: token $GITHUB_API_TOKEN")
-fi
 
 sort_versions() {
 	sed 'h; s/[+-]/./g; s/$/.z/; G; s/\n/ /' |
