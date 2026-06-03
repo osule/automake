@@ -98,15 +98,18 @@ build_and_install() {
 	[ -n "$src" ] && [ -f "$src/configure" ] ||
 		fail "No ./configure in source ('$src'); was bin/download run?"
 
+	# NOTE: `set -e` is suppressed inside a subshell on the left of `|| fail`,
+	# so each step needs an explicit `|| exit 1` — otherwise a failed
+	# ./configure would fall through to `make` and emit confusing errors.
 	(
-		cd "$src"
+		cd "$src" || exit 1
 		echo "* Configuring ..."
 		# shellcheck disable=SC2086
-		./configure --prefix="$install_path" $CONFIGURE_OPTIONS
+		./configure --prefix="$install_path" $CONFIGURE_OPTIONS || exit 1
 		echo "* Building ..."
-		make -j"$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)"
+		make -j"$(getconf _NPROCESSORS_ONLN 2>/dev/null || echo 1)" || exit 1
 		echo "* Installing into $install_path ..."
-		make install
+		make install || exit 1
 	) || fail "Build/install of $TOOL_NAME $version failed."
 
 	test -x "$install_path/bin/$MAIN_BIN" ||
