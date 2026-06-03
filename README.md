@@ -1,4 +1,4 @@
-# asdf-automake
+# automake
 
 [GNU Automake](https://github.com/autotools-mirror/automake) plugin for the
 [asdf](https://asdf-vm.com) version manager.
@@ -8,7 +8,7 @@ release tarballs (`ftp.gnu.org`), which ship a pre-generated `./configure`.
 
 ## Dependencies
 
-- `autoconf` (manage it with [asdf-autoconf](../asdf-autoconf) or your package manager)
+- `autoconf` (manage it with [autoconf](../autoconf) or your package manager)
 - `perl`
 - `make` and a C compiler
 
@@ -27,7 +27,7 @@ sudo apt-get install autoconf perl make
 ## Usage
 
 ```shell
-asdf plugin add automake https://github.com/<you>/asdf-automake.git
+asdf plugin add automake https://github.com/<you>/automake.git
 asdf install automake latest
 asdf global automake latest
 automake --version

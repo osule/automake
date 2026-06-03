@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Shared helpers for the asdf-automake plugin.
+# Shared helpers for the automake plugin.
 #
 # Versions are listed from the upstream git tags at autotools-mirror/automake,
 # and built from the official GNU release tarballs (which ship a pre-generated
@@ -14,12 +14,12 @@ TOOL_NAME="automake"
 MAIN_BIN="automake"
 TOOL_TEST="automake --version"
 ARCHIVE_EXT="tar.xz"
-# automake needs autoconf (provide it via asdf-autoconf or your package manager).
+# automake needs autoconf (provide it via autoconf or your package manager).
 BUILD_DEPS="autoconf perl make"
 CONFIGURE_OPTIONS="${AUTOMAKE_CONFIGURE_OPTIONS:-}"
 
 fail() {
-	echo -e "asdf-$TOOL_NAME: $*" >&2
+	echo -e "$TOOL_NAME: $*" >&2
 	exit 1
 }
 
